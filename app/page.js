@@ -7,7 +7,7 @@ import { useState } from "react";
 import Play from "./Play/page";
 export default function Home() {
   const [pressed,isPressed] = useState(false);
-  const [svg,passSvg] = useState("");
+  const [svg,passSvg] = useState(null);
   
   const common = (e) => {
     e.stopPropagation();
