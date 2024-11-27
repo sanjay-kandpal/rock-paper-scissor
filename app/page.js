@@ -7,7 +7,12 @@ import { useState } from "react";
 import Play from "./Play/page";
 export default function Home() {
   const [pressed,isPressed] = useState(false);
-  const [svg,passSvg] = useState(null);
+  const [svg,setPassSvg] = useState(
+    {
+      index: null,
+      src: ''
+    }
+  );
   
   const common = (e) => {
     e.stopPropagation();
@@ -17,7 +22,10 @@ export default function Home() {
     const img = div.querySelector('img')
     console.log(img.src);
     
-    passSvg(img.src)
+    setPassSvg({
+      index: img.id,
+      src: img.src
+    })
     isPressed(true);
   }
   return (
@@ -36,19 +44,19 @@ export default function Home() {
       <>
         <div className="rounded-full border-8 cursor-pointer flex flex-row" onClick={common}>
           <div className="border-2 rounded-full w-20 "> 
-            <Image src={Rocksvg} height="100vh" width="0vw" alt="Rock image" priority />
+            <Image src={Rocksvg} height="100vh" width="0vw" alt="Rock image" priority id="0" />
             <p> Rock </p>
           </div>
         </div>
         <div className="rounded-full border-8 cursor-pointer" onClick={common}>
           <div className="border-2 rounded-full w-20"> 
-            <Image src={Papersvg} height="90vh" width="90vw" alt="Paper image" priority/>
+            <Image src={Papersvg} height="90vh" width="90vw" alt="Paper image" id="1" priority/>
             <p> Paper </p>
           </div>
         </div>
         <div className="rounded-full border-8 cursor-pointer" onClick={common}>
           <div className="border-2 rounded-full w-20"> 
-            <Image src={  Scissorsvg} height="100vh" width="100vw" alt="Scissor image" priority />  
+            <Image src={  Scissorsvg} height="100vh" width="100vw" alt="Scissor image" id="2" priority />  
             <p> Scissor </p>
           </div>
         </div>
