@@ -11,7 +11,8 @@ export default function Play({svg}){
     const [svgIndex,setIndex] = useState(null);
     const [retry,setRetry] = useState(false);
     const [IsIntervalComplete,setIsIntervalComplete] = useState(false);
-    
+    const [trigger,setTrigger] = useState(0);
+
     let svgArray = {
         "0": Rocksvg,
         "1": Papersvg,
@@ -43,6 +44,7 @@ export default function Play({svg}){
                 console.log(arr[newFinal]);
                 setFinalValue(newFinal)
                 setIsIntervalComplete(true);
+            
             }
 
             setIndex(arr[i%arr.length])
@@ -52,7 +54,7 @@ export default function Play({svg}){
         
         return () => clearInterval(interval)
         
-    },[])
+    },[trigger])
     
     
     return(
@@ -69,8 +71,14 @@ export default function Play({svg}){
                     />
                 )}
             </>
-            {svg.index}{finalValue}
-            {IsIntervalComplete && svg.index == finalValue && <button>Retry</button>}    
+            {svg.index}{finalValue}{svgIndex} {/*Debug*/}
+            {
+                IsIntervalComplete && svgIndex == svg.index ? (
+                    <button onClick={()=> setTrigger((prev)=>prev+1)}>Draw! Retry Again</button>
+                ):(
+                    <button onClick={()=> setTrigger((prev)=>prev+1)}>Continue</button>
+                )
+            }     
         </>
     )
 }

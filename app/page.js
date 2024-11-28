@@ -6,6 +6,7 @@ import Scissorsvg from '../public/icon-scissors.svg'
 import { useState } from "react";
 import Play from "./Play/page";
 export default function Home() {
+  
   const [pressed,isPressed] = useState(false);
   const [svg,setPassSvg] = useState(
     {
@@ -15,6 +16,7 @@ export default function Home() {
   );
   
   const common = (e) => {
+    
     e.stopPropagation();
     console.log(e);
     const div = e.currentTarget;
@@ -65,8 +67,6 @@ export default function Home() {
         </div>
       </>
     )}
-
   </div>
-
   );
 }
